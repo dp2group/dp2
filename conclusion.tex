@@ -1,3 +1,12 @@
 \section{Conclusion}
+This design solves many of the technical problems associated with a peer-to-peer
+collaborative text editor. The document is represented in memory in a tree-like structure
+that allows users to make changes to the document structure at paragraph and sentence
+granularity, simplifying the merging process. The modified version vector allows these
+changes to be communicated without transferring the entire document between users. Once
+conflicts are detected, the merge process described above allows the conflicts to be
+resolved and distributed back to the users. Commit points similarly handled by ensuring
+that the document is agreed upon by every user, merging different versions as necessary,
+before saving the file. Together, these mechanisms comprise a system that allows user-friendly
+editing of shared text files, even without network connection.
 
-ipsum lorum

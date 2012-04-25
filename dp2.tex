@@ -1,7 +1,7 @@
 \documentclass{6033dp1/6033dp1}
 
 \title{6.033 Design Project 2}
-\author{Andrew Cooper, Benjamen Stueck, Patrick Vatterott}
+\author{Andrew Cooper, William Stueck, Patrick Vatterott}
 \date{April 24, 2012}
 \recitation{Recitation 06}
 
@@ -9,6 +9,21 @@
 \maketitle
 
 \input{version_vector}
+
+
+\section{Merging}
+Merging will occur when two or more users have changed the same document. The design will handle both automatic and manual merging, where manual merging will require the user to correct the merging conflicts themselves.
+%\vspace{12 pt} \\
+
+As seen above, each text document will be stored as a tree where parents correspond to paragraphs and children correspond to sentences. The version vectors stored for each document will keep track of the modifications to individual paragraphs between peers. Automatic merging will take place when peers have made changes to different paragraphs because these changes will not interfere with one another. When users modify the same paragraph in a document, the system must traverse the tree and analyze individual sentences. Using an insert, delete, and modify algorithm, the system will be able to determine the modifications among the sentences within the paragraph and any conflicts that emerged due to the modifications. Depending on the change, the system can either automatically merge the documents or alert the users of a conflict that must be merged manually.
+%\vspace{12 pt} \\
+
+\section{Commit Points}
+The P2P text editor must be able to support commit points. A commit point is defined as a point in time when a user can manually commit the current version of a text file, and once every user agrees on the commit, that current state of the text file is preserved on all systems.  This functionality allows users to save previous versions of a file and also allows them to have a file backup in the event of a system crash.
+
+%\vspace{12 pt} \\
+Whether offline or online, when a user makes a commit, a new file is created on his/her system. The file is named in the following manner: \emph{oldFileName\_commitName.txt}. \emph{oldFileName} refers to the name of the original file, and \emph{commitName} refers to the name of the commit submitted by the user. The next time that user comes online, the system will talk to all peers to see if changes have been made to the committed file. If no changes have been made, the commit is a success, and \emph{oldFileName\_commitName.txt} is saved on every user's machine. If changes have been made, the commit fails. The system then follows the merging process described above to update any changes to \emph{oldFileName\_commitName.txt}, and that new state is saved on every user's machine. Assuming $n$ commits between peers, the a user's system should have $n+1$ files associated with the text document.
+%\vspace{12 pt} \\
 
 
 \input{conclusion}

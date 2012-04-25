@@ -1,7 +1,32 @@
 \section{Version Vector}
-Test text
+A document's version information is represented in a modified version vector
+maintained by each user. Each paragraph in the document is assigned a unique
+paragraph id. The vector contains (paragraph id, version number)
+pairs, ordered so that each paragraph occurs in the vector in the order it occurs
+in the document. Every time a user merges his changes with another user, both save
+the vector they have agreed upon.
 
-
-\begin{equation}
+$$
  [ (pid, version), (pid, version), (pid, version) ]
-\end{equation}
+$$
+
+This allows the system to track changes to individual paragraphs as well as changes
+to the order of paragraphs. If for example, in a document with three paragraphs, 
+A moves paragraph 1 to the end, and B changes a word in paragraph 1, their vectors
+will change from:
+
+$$ 
+ A, B: [ (1, 0), (2, 0), (3, 0) ]
+$$
+
+to:
+
+$$
+ A: [ (2, 0), (3, 0), (1, 0) ] $$ $$ 
+ B: [ (1, 1), (2, 0), (3, 0) ]
+$$
+
+upon merging, both users will see that the vectors are different than the last
+agreed upon vector, and the merging process will occur. Because of how the vector
+is structured, only the text from one paragraph needs to be transmitted between 
+hosts, the order information can be transmitted using a more concise protocol.

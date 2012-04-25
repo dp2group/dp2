@@ -1,0 +1,6 @@
+- Introduction
+- Explain graph of document structure
+- Explain version vector [(pid, version), (pid, version)]
+- Explain commit process
+- Explain merging
+- Conclusion

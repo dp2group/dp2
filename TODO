@@ -1,6 +1,6 @@
-- Introduction
-- Explain graph of document structure
-- Explain version vector [(pid, version), (pid, version)]
-- Explain commit process
-- Explain merging
-- Conclusion
+Andy - Introduction 
+Andy - Explain graph of document structure
+Patrick - Explain version vector [(pid, version), (pid, version)]
+Ben - Explain commit process
+Ben - Explain merging
+Patrick - Conclusion

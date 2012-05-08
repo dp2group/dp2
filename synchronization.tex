@@ -1,0 +1,12 @@
+\section{Synchronization}
+
+Synchronization occurs when two users connect their computers over a local area connection, i.e. an Ethernet cord or shared WIFI. When two users are synchronized, each user can make updates to the document that are then immediately visible to the other user.  These users can then acquire an internet connection and merge documents with a third party just as before.
+%\vspace{12 pt} \\
+
+The major problem with synchronization is the conflict that arises when two users are simultaneously trying to modify the same" part" of a document. In this sense, "part" refers to the sentence level of granularity in the system design. To address this problem, the design uses a locking system to protect a sentence from being modified at the same point in time.
+%\vspace{12 pt} \\
+
+ When a user places the cursor in a particular sentence in the document, the P2P system first grabs the 32-bit ID of the sentence. This ID is relayed to the other user currently in synchronization. That user's system locates the sentence and locks it; the user is unable to place a cursor within that sentence. Once the editing user moves to a different part of the document, an unlock signal is sent to the other user. This system prevents simultaneous editing of the same sentence.
+%\vspace{12 pt} \\
+
+During this locking and unlocking process, the two users share a central log file. Every modification made by either user is appended to the log file. The locking system prevents merging conflicts, so one log file is safe to use. When synchronization is over, this central log file is appended to the end of each user's log file that existed before synchronization. A pointer to the opposite user is placed at the last entry, and the log file is then up-to-date and correct. Merging between a third party can then be handled using the normal method described above. 

@@ -1,0 +1,9 @@
+\section{Commit Points}
+
+A commit point is defined as a point in time when a user can manually commit the current version of the document, and once every user agrees on the commit, that current state of the document is preserved on all systems.  This functionality allows users to save previous versions of a file and also allows them to have a file backup in the event of a system crash.
+%\vspace{12 pt} \\
+
+The design requires that every user be online before a commit can be made. This requirement makes sure that every user agrees to the commit point and that all outstanding modifications and conflicts are merged correctly. In order to merge, a user's log file must be completely caught up with every user in the system. If the user's last log entry contains sync pointers to every user in the system, then the user will be allowed to issue a commit. The commit process is described below.
+%\vspace{12 pt} \\
+
+After a user is completely up to date with all other online users and the commit is issued, the committing user queries all other users. This query simply asks if the queried user is in accordance with the commit point. If a user is not in accordance, then the commit fails, and that information is returned to the committing user. If all users are in accordance, the query returns "True" to the committing user. When "True" is returned, the current version of the file is saved to every user's system in the current working directory.  Assuming the original document is named \emph{original.txt}, the file saved onto each system will be \emph{original\_commitName.txt}, where \emph{commitName} is the name the committing user assigned to the commit. Given $n$ commits of a document, the working directory should contain $n+ 1$ documents; one original document and n committed documents.

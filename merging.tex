@@ -1,0 +1,13 @@
+\section{Merging}
+
+When two users merge, the user with the higher \emph{uid} is selected to be
+the merger. All merging is done on a pairwise basis. If n users are online 
+and another comes online, the user with the highest \emph{uid} out of the currently
+online group is chosen to do a pairwise merge with the newcomer.
+
+When this happens, the user with the lower \emph{uid} (user A) looks up the last merge point
+with the higher \emph{uid} (user B), and sends everything in his log past that point to
+A. User B also scans back in the log to the last merge with 
+
+%User B then locks his document and creates a temporary copy somewhere else in memory (the
+%working copy).  

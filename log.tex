@@ -11,7 +11,8 @@ are continually appended to their local log. The table of commands in
 Table \ref{table:log_commands} are appended sequentially to the log as the user edits the in-memory
 document. In the table, the symbol \emph{pid} refers to a unique paragraph ID, the symbol \emph{sid}
 refers to a unique (within the associated paragraph) sentence ID, and the symbol \emph{uid} refers
-to a unique user ID.
+to a unique user ID. In commands that insert/delete a paragraph/sentence, an ID of 0 implies the end of
+the parent document/paragraph.
 
 %%-------------------------Log Command Table-----------------------------------%%
 \begin{table}[h!]
@@ -20,20 +21,21 @@ to a unique user ID.
   \hline
   Log Command & Parameters & Description \\
   \hline \hline
-  CREATE\_S & \emph{pid}, \emph{sid}, \emph{pos} & Created a new sentence with unique ID \emph{sid} at position \emph{pos} in the paragraph with ID \emph{pid} \\
+  CREATE\_S & \emph{pid}, \emph{sid}, \emph{sid2} & Created a new sentence with unique ID \emph{sid} in the paragraph with ID \emph{pid},
+                                                    and inserted it before sentence \emph{sid2} \\
   \hline
-  CREATE\_P & \emph{pid} \emph{pos} & Created a new paragraph with the unique ID \emph{pid} at position \emph{pos} \\
+  CREATE\_P & \emph{pid} \emph{pid2} & Created a new paragraph with the unique ID \emph{pid} and inserted it before paragraph \emph{pid2} \\
   \hline
-  DELETE\_S & \emph{pid}, \emph{sid}, \emph{p\_old} & Deleted the sentence with ID \emph{sid} from position \emph{p\_old} in the paragraph with ID \emph{pid} \\
+  DELETE\_S & \emph{pid}, \emph{sid}, \emph{sid2} & Deleted the sentence with ID \emph{sid} from before sentence \emph{sid2} in the paragraph with ID \emph{pid} \\
   \hline
-  DELETE\_P & \emph{pid}, \emph{p\_old} & Deleted the paragraph with ID \emph{pid} from position \emph{p\_old} \\
+  DELETE\_P & \emph{pid}, \emph{pid2} & Deleted the paragraph with ID \emph{pid} from before paragraph \emph{pid2} \\
   \hline
-  MOVE\_S & \emph{pid}, \emph{sid}, \emph{p\_old}, \emph{p\_new} & Moved the sentence at (\emph{pid}, \emph{sid}) 
-                                                                         from position \emph{p\_old} in paragraph \emph{pid} 
-                                                                         to position \emph{p\_new} in paragraph \emph{pid} \\
+  MOVE\_S & \emph{pid}, \emph{sid}, \emph{sid2}, \emph{sid3} & Moved the sentence at (\emph{pid}, \emph{sid}) 
+                                                                         from before sentence \emph{sid2} in paragraph \emph{pid} 
+                                                                         to before sentence \emph{sid3} in paragraph \emph{pid} \\
   \hline
-  MOVE\_P & \emph{pid}, \emph{p\_old}, \emph{p\_new} & Moved the paragraph with ID \emph{pid} from position \emph{p\_old} 
-                                                                                              to position \emph{p\_new} in the document \\ 
+  MOVE\_P & \emph{pid}, \emph{pid2}, \emph{pid3} & Moved the paragraph with ID \emph{pid} from before paragraph\emph{pid2} 
+                                                                                          to before paragraph \emph{pid3} in the document \\ 
   \hline
   CHANGE\_S & \emph{pid}, \emph{sid}, \emph{s\_old} \emph{s\_new} & Changed the sentence at (\emph{pid}, \emph{sid}) from the text \emph{s\_old}
                                                               to the text \emph{s\_new}  \\
@@ -67,9 +69,9 @@ After these changes, the document will look like this:
   \hline \hline
    MERGE 2 \\
    CHANGE\_S 273, 104, "I saw a dog", "I saw a cat" \\
-   MOVE\_P 273, 2, 0 \\
-   CREATE\_P 233, 3 \\
-   CREATE\_S 233, 10 \\
+   MOVE\_P 273, 0, 98 \\
+   CREATE\_P 233, 0 \\
+   CREATE\_S 233, 10, 0 \\
    CHANGE\_S 233, 10, "", "This is the conclusion" \\
   \hline
  \end{tabular}

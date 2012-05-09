@@ -1,2 +1,2 @@
 all:
-	pdflatex dp2.tex
+	pdflatex dp2Report.tex

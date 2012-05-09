@@ -1,0 +1,48 @@
+\section{Tracking Changes}
+
+Each user maintains two data strucutres beyond their document
+representation: a change log and a table mapping the other users in 
+the group to points in the log. 
+
+
+\subsection{Log}
+As each user edits their local copy of the document, their changes
+are continually appended to their local log. The table of commands in
+Table \ref{table:log_commands} are appended sequentially to the log as the user edits the in-memory
+document. In the table, the symbol \emph{pid} refers to a unique paragraph ID, the symbol \emph{sid}
+refers to a unique (within the associated paragraph) sentence ID, and the symbol \emph{uid} refers
+to a unique user ID.
+
+%%-------------------------Log Command Table-----------------------------------%%
+\begin{table}[h!]
+\begin{center}
+ \begin{tabular} {|c|c|p{7cm}|}
+  \hline
+  Log Command & Parameters & Description \\
+  \hline \hline
+  CREATE\_S & \emph{pid}, \emph{sid} & Created a new sentence with unique ID \emph{sid} in the paragraph with ID \emph{pid} \\
+  \hline
+  CREATE\_P & \emph{pid} & Created a new paragraph with the unique ID \emph{pid} \\
+  \hline
+  DELETE\_S & \emph{pid}, \emph{sid} & Deleted the sentence with ID \emph{sid} from the paragraph with ID \emph{pid} \\
+  \hline
+  DELETE\_P & \emph{pid} & Deleted the paragraph with ID \emph{pid} \\
+  \hline
+  MOVE\_S & \emph{pid}, \emph{sid}, \emph{pos} & Moved the sentence at (\emph{pid}, \emph{sid}) to position \emph{pos} in paragraph \emph{pid} \\
+  \hline
+  MOVE\_P & \emph{pid}, \emph{pos} & Moved the paragraph with ID \emph{pid} to position \emph{pos} in the document \\ 
+  \hline
+  CHANGE\_S & \emph{pid}, \emph{sid}, \emph{string} & Changed the sentence at (\emph{pid}, \emph{sid}) to the text \emph{string} \\
+  \hline
+  MERGE & \emph{uid} & Merged with the user with ID \emph{uid} at this point in the log \\
+  \hline
+ \end{tabular}
+\end{center}
+\caption{The log commands used to track document changes}
+\label{table:log_commands}
+\end{table}
+%%-----------------------------------------------------------------------------%%
+
+\subsection{Checkpoint Table}
+
+

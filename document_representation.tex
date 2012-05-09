@@ -5,12 +5,12 @@ This section describes how the system design represents a text document and how 
 The design assumes that every paragraph and every sentence will have a corresponding paragraph and sentence ID. Each paragraph ID will be unique, and each sentence ID will be unique for its corresponding paragraph. This design specification will be accomplished by assigning a masked 32-bit long value to all paragraphs and sentences. The mask will be a 10-bit block corresponding to a unique User ID that will be assigned to each user when the peer-to-peer document is first created. The remaining 22 bits will be assigned when the paragraph or sentence is first created. The mask that is used corresponds to the User ID of the user that initially created the paragraph or sentence.  This masked long value is shown in Figure 1 below.
 %\vspace{12 pt} \\
 
-\includegraphics[scale=0.55]{figure1.png}
+\includegraphics[scale=0.55]{Figure1.png}
 
 The 10-bit mask ensures that every paragraph in the system has a unique ID. The 32-bit ID will be appended to the end of every paragraph in the system but will be unable to be translated by the text editor. This step ensures that the information is stored in the document but is not visible to the user. Within each paragraph, the 10-bit mask will be used to create an ID for each sentence. This 32-bit ID will be appended to the end of the sentence in the document, and just as above, the long value will not be seen by the user. A sample document is shown below in Figure 2.
 %\vspace{12 pt} \\
 
-\includegraphics[scale=0.55]{figure2.png}
+\includegraphics[scale=0.55]{Figure2.png}
 
 The user will never see a document similar to this one because the 32-bit long values will not appear in the actual document, but Figure 2 shows how these IDs will be stored. As you can see, the last sentence has 64 bits appended to it; one for the sentence ID, and one for the paragraph ID.  Finally, the ID of a paragraph or sentence is immutable; it will never change throughout the life of the document.
 %\vspace{12 pt} \\

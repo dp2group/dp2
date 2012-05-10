@@ -127,11 +127,20 @@ then traverses the imported log part in a backwards manner, following these rule
       local log.
 
 \item When encountering a MOVE\_P, if the moved bit is set in the paragraph table for this paragraph,
-      check if the targets are the same. If they are not, delete this statement. If they are, prompt the
-      user to resolve the conflict. 
+      check if the targets are the same. If they are different, prompt the
+      user to resolve the conflict. If he chooses the local version, or the targets were the same, 
+      delete all moves to this paragraph
+      from the foreign log part. If he chooses the foreign version, delete all moves to this paragraph
+      from the local log part.
 
+\item When encountering a MOVE\_S, if the moved bit is set in the sentence table for this sentence,
+      check if the targets are the same. If they are different, prompt the
+      user to resolve the conflict. If he chooses the local version, or the targets were the same, 
+      delete all moves to this sentence 
+      from the foreign log part. If he chooses the foreign version, delete all moves to this sentence 
+      from the local log part.
 
-
+\item Keep all MERGE and CREATE statements in the log.
 \end{enumerate}
 
 \subsection{No Conflict Example}

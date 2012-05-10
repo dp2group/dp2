@@ -19,7 +19,7 @@ CVS requires space in implementation beyond the space necessary for storing the 
 
 \subsubsection{Labeling Overhead}
 
-As noted above, labeling parts of the document will increase the length of the document by 32 bits for each sentence as well as 32 bits per paragraph.  Encoding each character using Unicode allocates 16 bits to each character.  Therefore each label effectively adds two characters, 32 bits, to the document.  Assuming the average paragraph has 10 sentences, CVS\Õ labeling system effectively adds 22 characters per paragraph.  Since a paragraph has 872 characters on average, CVS labeling causes space overhead of 2.52\%.  See Figure 4 for details.
+As noted above, labeling parts of the document will increase the length of the document by 32 bits for each sentence as well as 32 bits per paragraph.  Encoding each character using Unicode allocates 16 bits to each character.  Therefore each label effectively adds two characters, 32 bits, to the document.  Assuming the average paragraph has 10 sentences, CVS's labeling system effectively adds 22 characters per paragraph.  Since a paragraph has 872 characters on average, CVS labeling causes space overhead of 2.52\%.  See Figure 4 for details.
 
 \begin{figure}
 \begin{center}

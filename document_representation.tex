@@ -11,10 +11,10 @@ The design assumes that every paragraph and every sentence will have a correspon
 \label{fig:id_figure}
 \end{figure}
 
-The 10-bit mask ensures that every paragraph in the system has a unique ID. The 32-bit ID will be appended to the end of every paragraph in the system but will be unable to be translated by the text editor. This step ensures that the information is stored in the document but is not visible to the user. Within each paragraph, the 10-bit mask will be used to create an ID for each sentence. This 32-bit ID will be appended to the end of the sentence in the document, and just as above, the long value will not be seen by the user. A sample document is shown in Figure ~\ref{fig:file_figure} (below).
+The 10-bit mask ensures that every paragraph in the system has a unique ID. The 32-bit ID will be appended to the end of every paragraph in the system but will be unable to be translated by the text editor. This step ensures that the information is stored in the document but is not visible to the user. Within each paragraph, the 10-bit mask will be used to create an ID for each sentence. This 32-bit ID will be appended to the end of the sentence in the document, and just as above, the long value will not be seen by the user. A sample document is shown in Figure ~\ref{fig:file_figure} on page ~\pageref{fig:file_figure}.
 %\vspace{12 pt} \\
 
-\begin{figure}[b]
+\begin{figure}[t]
 \includegraphics[scale=0.55]{Figure2.png}
 \caption{An example of how the representation is stored in the document. (1,1) refers to the first addition by the first user. (2,1) refers to the first addition by the second user. The final (1,1) represents the first paragraph addition by the first user. These tuples are stored as long values shown in Figure ~\ref{fig:id_figure}.}
 \label{fig:file_figure}

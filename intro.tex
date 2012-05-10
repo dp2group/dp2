@@ -1,0 +1,6 @@
+\section{Introduction}
+
+CVS, named for its creators Cooper, Vatterott, and Stueck, is a peer-to-peer text editing system that avoids the necessity of a central server to host the document. The system is designed to operate in a distributed network where all users are not necessarily connected at any given time. Modifications can be made to the text while a user is not connected to the internet, and once a connection is established, the modifications are applied or merged across all online users. As explained in Section 6.0 below, two users can also synchronize over a local area connection to make real-time updates to the text. 
+%\vspace{12 pt} \\
+
+CVS makes use of a sophisticated logging system that keeps track of unique user's modifications to the text. The logging system, accompanied with a text merging algorithm, attempts to automatically merge changes made to the text by the user. If the algorithm detects a conflict that cannot be merged without human deliberation, the users are notified, and the conflicts are resolved manually. CVS also applies different safety mechanisms and data representation techniques to ensure that all users can edit a document seamlessly.
